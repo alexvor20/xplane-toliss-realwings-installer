@@ -73,7 +73,6 @@ def _build_all_wings_objects(include_frames: bool = True) -> tuple[
     flaps_ceo = [_obj("RealWings321/Flaps321.obj",    FLAGS_ALL_VIEWS)]
     flaps_neo = [_obj("RealWings321/Flaps321NEO.obj", FLAGS_ALL_VIEWS)]
 
-    # CEO sharklets reuse CEO body + CEO flaps (same as wingtips variant here)
     return (
         ceo_body + flaps_ceo + frames_lines,   # CEO wingtips
         neo_body + flaps_ceo + frames_lines,   # CEO sharklets
