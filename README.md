@@ -53,7 +53,7 @@ TEXTURE_NORMAL	321_FlapsNEO_NRM.png
 ## Instalation: 
 
 1. AFTER the change in files copy `RealWings321` folder from CEO AND NEO folders into your toliss a321's objects folder. (yes, into one folder) (only one file should be overwritten `custom_decal.png`, which is identical for both folders)
-2. Put all the installers into you toliss a321 folder
+2. Put all the installers into your toliss a321 folder
 3. run Carda_installer_realwings
 4. run RealWings_installer
 5. run RealWingsSwitcher
