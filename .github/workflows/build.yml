@@ -1,0 +1,82 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - windows-2025
+          - ubuntu-24.04
+          - macos-15
+        script:
+          - name: RealWings321_installer
+            file: RealWings321_installer.py
+          - name: RealWingsSwitcher
+            file: RealWingsSwitcher.py
+
+
+    runs-on: ${{ matrix.os }}
+    name: Build (${{ matrix.script.name }} | ${{ matrix.os }})
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+
+      - name: Set platform label
+        id: vars
+        run: |
+          if [[ "$RUNNER_OS" == "Windows" ]]; then echo "label=windows-x64" >> $GITHUB_OUTPUT; fi
+          if [[ "$RUNNER_OS" == "Linux" ]]; then echo "label=linux-x64" >> $GITHUB_OUTPUT; fi
+          if [[ "$RUNNER_OS" == "macOS" ]]; then echo "label=macos-x64" >> $GITHUB_OUTPUT; fi
+        shell: bash
+
+      - name: Build with PyInstaller
+        run: >
+          pyinstaller
+          --onefile
+          --name "${{ matrix.script.name }}_${{ steps.vars.outputs.label }}"
+          ${{ matrix.script.file }}
+
+      - name: Upload artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.script.name }}_${{ steps.vars.outputs.label }}
+          path: dist/${{ matrix.script.name }}_${{ steps.vars.outputs.label }}*
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - name: Download all artefacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artefacts
+          merge-multiple: true
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artefacts/*
+          generate_release_notes: true
