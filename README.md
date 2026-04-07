@@ -60,3 +60,9 @@ TEXTURE_NORMAL	321_FlapsNEO_NRM.png
 ## Known issues
 
 A wrong answer to the question regarding the Enhanced Light mod could lead to the wrong assumption that lights_out321_XP12.obj was already modified.
+
+## Credits and Licensing
+
+[iy4vet's](https://github.com/iy4vet) [carda installer](https://github.com/iy4vet/xplane-toliss-carda-installer) was used as a base for this installer
+
+[GeoBuilds](https://forums.x-plane.org/profile/962966-geobuilds/) [Durantula2405](https://forums.x-plane.org/profile/843947-durantula2405/) - RealWings mod authors
