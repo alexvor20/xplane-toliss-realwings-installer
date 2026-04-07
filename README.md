@@ -16,9 +16,9 @@ RealWingsSwitcher Would allow you to easily switch between variants
 
 ## Features
 
-Optional installation of new Window Frames
-Optional editing of ceo engines OBJs, lights_out321_XP12.obj and decals.obj
-Support for [Enhanced lights](https://forums.x-plane.org/files/file/69851-enhanced-lights-for-toliss-a319320321330340/) mod by anndresv
+* Optional installation of new Window Frames
+* Optional editing of ceo engines OBJs, lights_out321_XP12.obj and decals.obj
+* Support for [Enhanced lights](https://forums.x-plane.org/files/file/69851-enhanced-lights-for-toliss-a319320321330340/) mod by anndresv
 
 ## Requirements 
 
