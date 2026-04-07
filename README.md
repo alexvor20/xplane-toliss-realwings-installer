@@ -3,67 +3,52 @@
 Installer script for the [Realwings321](https://forums.x-plane.org/files/file/99442-realwings321-wing-replacement-mod-for-toliss-a321neoceo) mod.
 
 ## What it does
+
 Everything from the mod readme.
 The script would create RealWings_ACF folder and 3 .acf~ files for each variant in that folder.
 
 | Variant | Build from | 
 | -------- | ------------- | 
-| CEO wingtips | All the files from CEO folder |
-| CEO Sharklets | `MainNEO`+`GlassNEO`+`SecondaryNEO`+ the rest from the CEO folder |
-| NEO | All the files from NEO folder |
+| CEO wingtips | `Main`+`Glass`+`Secondary`+ `Flaps321` |
+| CEO Sharklets | `MainNEO`+`GlassNEO`+`SecondaryNEO`+ `Flaps321` |
+| NEO | `MainNEO`+`GlassNEO`+`SecondaryNEO`+ `Flaps321NEO` |
 
-RealWingsSwitcher Would allow you to easily switch between variants 
+RealWingsSwitcher would allow you to easily switch between variants. (Only one can be used at a time — limitation of the mod)
 
 ## Features
 
 * Optional installation of new Window Frames
-* Optional editing of ceo engines OBJs, lights_out321_XP12.obj and decals.obj
-* Support for [Enhanced lights](https://forums.x-plane.org/files/file/69851-enhanced-lights-for-toliss-a319320321330340/) mod by anndresv
+* Support for [Enhanced lights](https://forums.x-plane.org/files/file/69851-enhanced-lights-for-toliss-a319320321330340/) mod by [anndresv](https://forums.x-plane.org/profile/647102-anndresv/)
 
 ## Requirements 
 
-Installed crada mod with this [fork](https://github.com/alexvor20/xplane-toliss-carda-installer-RealWings) of carda installer is expected. (support for existing carda installation, it would correct the coordinates for 
-compatibility)
+* Re-download RealWings321 mod if you already had it before.
+* Installed Crada mod with this [fork](https://github.com/alexvor20/xplane-toliss-carda-installer-RealWings) of Carda installer is expected. It would correct the coordinates for compatibility if Carda mod was already installed.
 
-I didn't quite figured the original idea so a change in the file structure is required to support simultaneous installation of CEO wingtips/CEO Sharklets/NEO variants.
+## How to use: 
 
-File renamings in 
+1. Copy `RealWings321` folder from `CEO` AND `NEO` folders into your toliss a321's objects folder. Replace the files if needed.
+2. Download the binaries for your OS from the [Releases](https://github.com/alexvor20/xplane-toliss-realwings-installer/releases/latest/) page:
+3. Place all the installers into your toliss a321 folder
+4. Run Carda_installer_RealWings
+5. Run RealWings_installer
+6. Run RealWingsSwitcher
+
+Your final file structure should look like this:
 ```
-RealWings321 mod folder/
-├─ NEO/
+A321 Base Folder/
+├─ objects/
 │  ├─ RealWings321/
+│  │  ├─ A total of 33 files should be here
+├─ RealWings321_installer
+├─ RealWingsSwitcher
+├─ install-carda-RealWings
 ```
-
-* 321_Flaps_ALB --> 321_FlapsNEO_ALB
-* 321_Flaps_NRM --> 321_FlapsNEO_NRM
-* Flaps321 --> FlapsNEO (it does require tweaking .obj to for the corresponding texture and nrm above)
-* Frames321 --> FramesNEO 
-* Lines321 --> LinesNEO
-
-Obviously renaming of the first two files leads to changes in `FlapsNEO.obj`
-Lines 6 and 7, respectively, change to:
-
-```
-TEXTURE	321_FlapsNEO_ALB.dds
-TEXTURE_NORMAL	321_FlapsNEO_NRM.png
-```
-
-^Desperate need for feedback on this.^  
-
-## Instalation: 
-
-1. AFTER the change in files copy `RealWings321` folder from `CEO` AND `NEO` folders into your toliss a321's objects folder. (yes, into one folder) (only one file should be overwritten `custom_decal.png`, which is identical for both folders)
-2. Put all the installers into your toliss a321 folder
-3. run Carda_installer_realwings
-4. run RealWings_installer
-5. run RealWingsSwitcher
-
-## Known issues
-
-A wrong answer to the question regarding the Enhanced Light mod could lead to the wrong assumption that lights_out321_XP12.obj was already modified.
 
 ## Credits and Licensing
 
-[iy4vet's](https://github.com/iy4vet) [carda installer](https://github.com/iy4vet/xplane-toliss-carda-installer) was used as a base for this installer
+This project is licensed under the GNU GPL v3.
+
+[iy4vet's](https://github.com/iy4vet) [Carda installer](https://github.com/iy4vet/xplane-toliss-carda-installer) was used as a base for this installer.
 
 [GeoBuilds](https://forums.x-plane.org/profile/962966-geobuilds/) and [Durantula2405](https://forums.x-plane.org/profile/843947-durantula2405/) - RealWings mod authors
