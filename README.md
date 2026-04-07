@@ -40,8 +40,8 @@ RealWings321 mod folder/
 * Frames321 --> FramesNEO 
 * Lines321 --> LinesNEO
 
-Obviously renaming of the first two files leads to changes in FlapsNEO.obj
-Lines 6 and 7 resectively changes.
+Obviously renaming of the first two files leads to changes in `FlapsNEO.obj`
+Lines 6 and 7, respectively, change to:
 
 ```
 TEXTURE	321_FlapsNEO_ALB.dds
