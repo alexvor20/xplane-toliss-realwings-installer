@@ -42,7 +42,7 @@ A321 Base Folder/
 ├─ RealWingsSwitcher
 ├─ install-carda-RealWings
 ```
-5. Run `Carda_installer_RealWings`
+5. Run `install-carda-RealWings`
 6. Run `RealWings_installer`
 7. Run `RealWingsSwitcher`. Any time you'd like to change the current variant, just run it again. You can also manualy switch between the variants. Simply copy the one you need from `A321 Base Folder/RealWings_ACF/` into `A321 Base Folder/`, delete the old `a321.acf` and rename your chosen variant to `a321.acf`.
 
