@@ -19,8 +19,8 @@ jobs:
           - ubuntu-24.04
           - macos-15
         script:
-          - name: RealWings321_installer
-            file: RealWings321_installer.py
+          - name: RealWings_installer
+            file: RealWings32X_installer.py
           - name: RealWingsSwitcher
             file: RealWingsSwitcher.py
 
