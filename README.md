@@ -7,10 +7,10 @@ Installer script for the [Realwings321](https://forums.x-plane.org/files/file/99
 This script automates the setup described in the original mod readme.
 
 It will:
-* Create a RealWings_ACF folder
-* Generate three .acf~ files (one per variant)
+* Create a `RealWings_ACF` folder
+* Generate three `.acf~` files (one per variant)
 
-| Variant | Build from                                         | 
+| Variant | Built from                                         | 
 | -------- |----------------------------------------------------| 
 | CEO wingtips | `Main`+`Glass`+`Secondary`+ `Flaps32X`             |
 | CEO Sharklets | `MainNEO`+`GlassNEO`+`SecondaryNEO`+ `Flaps32X`    |
