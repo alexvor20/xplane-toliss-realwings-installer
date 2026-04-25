@@ -1,19 +1,24 @@
-# RealWings321 mod installer for Toliss A321ceo/neo
+# RealWings32X mod installer for Toliss A32Xceo/neo
 
-Installer script for the [Realwings321](https://forums.x-plane.org/files/file/99442-realwings321-wing-replacement-mod-for-toliss-a321neoceo) mod.
+Installer script for the [Realwings321](https://forums.x-plane.org/files/file/99442-realwings321-wing-replacement-mod-for-toliss-a321neoceo) and [Realwings320](https://forums.x-plane.org/files/file/99352-realwings320-wing-replacement-mod-for-toliss-a320neo/) mods.
 
-## What it does
+## Overview
 
-Everything from the mod readme.
-The script would create `RealWings_ACF` folder and three `.acf~` files for each variant in that folder.
+This script automates the setup described in the original mod readme.
 
-| Variant | Build from | 
-| -------- | ------------- | 
-| CEO wingtips | `Main`+`Glass`+`Secondary`+ `Flaps321` |
-| CEO Sharklets | `MainNEO`+`GlassNEO`+`SecondaryNEO`+ `Flaps321` |
-| NEO | `MainNEO`+`GlassNEO`+`SecondaryNEO`+ `Flaps321NEO` |
+It will:
+* Create a RealWings_ACF folder
+* Generate three .acf~ files (one per variant)
 
-`RealWingsSwitcher` would allow you to easily switch between variants. (Only one can be used at a time — limitation of the mod)
+| Variant | Build from                                         | 
+| -------- |----------------------------------------------------| 
+| CEO wingtips | `Main`+`Glass`+`Secondary`+ `Flaps32X`             |
+| CEO Sharklets | `MainNEO`+`GlassNEO`+`SecondaryNEO`+ `Flaps32X`    |
+| NEO | `MainNEO`+`GlassNEO`+`SecondaryNEO`+ `Flaps32XNEO` |
+
+`RealWingsSwitcher` lets you switch between variants.
+
+Only one variant can be active at a time (mod limitation).
 
 ## Features
 
@@ -22,30 +27,34 @@ The script would create `RealWings_ACF` folder and three `.acf~` files for each 
 
 ## Requirements 
 
-* Any other mods that change `lights_out321_XP12.obj` and/or `Decals.obj` is unlikely to be supported. 
-* Re-download RealWings321 mod if you already had it before.
-* Installed Crada mod with this [fork](https://github.com/alexvor20/xplane-toliss-carda-installer-RealWings) of Carda installer is expected. It would correct the coordinates for compatibility if Carda mod was already installed.
+* Any other mods that modify `lights_out32X_XP12.obj` or `Decals.obj` are likely incompatible. 
+* Re-download RealWings mod if you already have it installed.
+* Installed Crada mod with this [fork](https://github.com/alexvor20/xplane-toliss-carda-installer-RealWings) of Carda installer is expected.
+  * This ensures correct coordinates if Carda is already installed.
 
 ## How to use: 
 
 
-1. Download [Realwings321](https://forums.x-plane.org/files/file/99442-realwings321-wing-replacement-mod-for-toliss-a321neoceo) mod
-2. Copy `RealWings321` folder from `CEO` **_and_** `NEO` folders into your Toliss a321's objects folder. Replace the files if needed.
-3. Download the binaries for your OS from the [Releases](https://github.com/alexvor20/xplane-toliss-realwings-installer/releases/latest/) page:
-4. Place all the installers into your Toliss a321 folder. Your final file structure should look like this:
+| Realwings320                                                                                                                                                                                                                                           | Realwings321                                                                                                                          | 
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------| 
+| 1. Download [Realwings320](https://forums.x-plane.org/files/file/99352-realwings320-wing-replacement-mod-for-toliss-a320neo/) and [Realwings319](https://forums.x-plane.org/files/file/99042-realwings319-wing-replacement-mod-for-toliss-a319/)* mods | 1. Download [Realwings321](https://forums.x-plane.org/files/file/99442-realwings321-wing-replacement-mod-for-toliss-a321neoceo) mod   |
+| 2. Merge `RealWings320` and `RealWings319`* folders' content from the corresponding mods into `objects/RealWings320` of your Toliss a320. Replace files if prompted.                                                                                    | 2. Copy `RealWings321` folder from `CEO` **_and_** `NEO` folders into your Toliss a321's objects folder. Replace files if prompted.. |
+3. Download binaries for your OS from the [Releases](https://github.com/alexvor20/xplane-toliss-realwings-installer/releases/latest/)
+5. Place all the installers into your Toliss a32X folder. Your final file structure should look like this:
 ```
-A321 Base Folder/
+A32X Base Folder/
 ├─ objects/
-│  ├─ RealWings321/
-│  │  ├─ A total of 33 files should be here
-├─ RealWings321_installer
+│  ├─ RealWings32X/
+│  │  ├─ (33 files total)
+├─ RealWings32X_installer
 ├─ RealWingsSwitcher
 ├─ install-carda-RealWings
 ```
 5. Run `install-carda-RealWings`
 6. Run `RealWings_installer`
-7. Run `RealWingsSwitcher`. Any time you'd like to change the current variant, just run it again. You can also manualy switch between the variants. Simply copy the one you need from `A321 Base Folder/RealWings_ACF/` into `A321 Base Folder/`, delete the old `a321.acf` and rename your chosen variant to `a321.acf`.
-
+7. Run `RealWingsSwitcher`. Any time you'd like to change the current variant, just run it again. You can also manualy switch between the variants. Simply copy the one you need from `A32X Base Folder/RealWings_ACF/` into `A32X Base Folder/`, delete the old `a32X.acf` and rename your chosen variant to `a32X.acf`.
+ 
+\*  Skip `RealWings319` if you do not want the CEO variants.
 
 
 ## Credits and Licensing
