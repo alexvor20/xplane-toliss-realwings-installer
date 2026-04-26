@@ -220,7 +220,8 @@ class ACFEditor:
             return removed_names, already_present
 
         # Rebuild the _obja/* key space from scratch
-        for k in [k for k in self._properties if k.startswith("_obja/") and k != "_obja/count"]:
+        keys_to_delete = [k for k in self._properties if k.startswith("_obja/") and k != "_obja/count"]
+        for k in keys_to_delete:
             del self._properties[k]
 
         survivors = [
@@ -534,47 +535,47 @@ def main() -> None:
     print("=" * SEPARATOR_WIDTH)
     print(" RealWings 32X Installer v1.5")
     print("=" * SEPARATOR_WIDTH)
-    print("\nWhich aircraft are you installing for?")
-    print("  1 - ToLiss A320")
-    print("  2 - ToLiss A321")
-    while True:
-        raw = input("\nEnter 1 or 2: ").strip()
-        if raw in ("1", "2"):
-            conf = {"1": "320", "2": "321"}[raw]
-            break
-        print(" Invalid choice. Please enter 1 or 2.")
-
-    STOCK_OBJECTS_TO_REMOVE=_build_obj_to_remove(conf)
-
-    TARGET_ACF = f"a{conf}.acf"
-    acf_path   = aircraft_dir / TARGET_ACF
-    if not acf_path.exists():
-        print(f"\nERROR: {TARGET_ACF} not found in {aircraft_dir}")
-        print("Run this script from the ToLiss A32X aircraft folder,")
-        print("or use --aircraft-dir to specify the path.")
-        input("\nPress Enter to exit...")
-        sys.exit(1)
-
-    print(f"\nAircraft folder: {aircraft_dir}")
-    print(f"Found ACF file: {acf_path.name}")
-
-    # ── Configuration ─────────────────────────────────────────────────────────
-    print(section_header("Configuration"))
-
-    if not ask_yes_no("Do you want to install RealWings mod?"):
-        input("\nPress Enter to exit...")
-        sys.exit(1)
-
-    install_frames  = ask_yes_no("Do you want to install new window frames?", True)
-    mod_installed   = ask_yes_no("Do you have Enhanced Lights mod by anndresv installed?", False)
-
-    (
-        ALL_REALWINGS_OBJECTS,
-        ALL_REALWINGS_OBJECTS_SHARKLETS,
-        ALL_REALWINGS_OBJECTS_NEO,
-    ) = _build_all_wings_objects(include_frames=install_frames, conf=conf)
 
     try:
+        print("\nWhich aircraft are you installing for?")
+        print("  1 - ToLiss A320")
+        print("  2 - ToLiss A321")
+        while True:
+            raw = input("\nEnter 1 or 2: ").strip()
+            if raw in ("1", "2"):
+                conf = {"1": "320", "2": "321"}[raw]
+                break
+            print(" Invalid choice. Please enter 1 or 2.")
+
+        STOCK_OBJECTS_TO_REMOVE = _build_obj_to_remove(conf)
+
+        TARGET_ACF = f"a{conf}.acf"
+        acf_path = aircraft_dir / TARGET_ACF
+        if not acf_path.exists():
+            print(f"\nERROR: {TARGET_ACF} not found in {aircraft_dir}")
+            print("Run this script from the ToLiss A32X aircraft folder,")
+            print("or use --aircraft-dir to specify the path.")
+            raise FileNotFoundError(f"{TARGET_ACF} not found")
+
+        print(f"\nAircraft folder: {aircraft_dir}")
+        print(f"Found ACF file: {acf_path.name}")
+
+        # ── Configuration ─────────────────────────────────────────────────────────
+        print(section_header("Configuration"))
+
+        if not ask_yes_no("Do you want to install RealWings mod?"):
+            print("\nInstallation cancelled by user.")
+            return
+
+        install_frames = ask_yes_no("Do you want to install new window frames?", True)
+        mod_installed = ask_yes_no("Do you have Enhanced Lights mod by anndresv installed?", False)
+
+        (
+            ALL_REALWINGS_OBJECTS,
+            ALL_REALWINGS_OBJECTS_SHARKLETS,
+            ALL_REALWINGS_OBJECTS_NEO,
+        ) = _build_all_wings_objects(include_frames=install_frames, conf=conf)
+
         # ── Backup: original a32X.acf  ───────────────────────────────────────
         print(section_header(f"Backup Original ACF"))
         acf_bak = acf_path.with_suffix(acf_path.suffix + ".backup")
@@ -583,7 +584,7 @@ def main() -> None:
         else:
             shutil.copy2(acf_path, acf_bak)
             print(f"  Backed up: {acf_path.name} → {acf_bak.name}")
-        
+
         # ── Steps 1-3: ACF object swap (all variants) ─────────────────────────
         acf_variants = [
             ("CEO wingtips",  "RealWingsCEO_wingtips",  ALL_REALWINGS_OBJECTS),
@@ -608,7 +609,7 @@ def main() -> None:
             )
 
             stock_removed = [n for n in removed if n in STOCK_OBJECTS_TO_REMOVE]
-            rw_refreshed  = [n for n in removed if n in all_filenames]
+            rw_refreshed = [n for n in removed if n in all_filenames]
 
             if stock_removed:
                 print(f"    Removed stock: {', '.join(stock_removed)}")
@@ -625,7 +626,7 @@ def main() -> None:
         # ── Step 4: Engine OBJ TRIS line deletions ────────────────────────────
         print(section_header("Engine OBJ TRIS Line Deletions"))
         for rel_path in TRISLineDeleter._TRIS_LINE_TARGETS:
-            fp    = aircraft_dir / rel_path
+            fp = aircraft_dir / rel_path
             label = rel_path.split("/")[-1]
             if not fp.exists():
                 print(f"  {label}: Not found, skipping")
@@ -643,7 +644,7 @@ def main() -> None:
         print(section_header("Lights OBJ LIGHT_PARAM Block Deletions"))
         LightParamDeleter.set_variant(conf)
         for rel_path in LightParamDeleter._TARGETS:
-            fp    = aircraft_dir / rel_path
+            fp = aircraft_dir / rel_path
             label = rel_path.split("/")[-1]
             if not fp.exists():
                 print(f"  {label}: Not found, skipping")
@@ -660,7 +661,7 @@ def main() -> None:
         # ── Step 6: Decal TRIS block deletions ────────────────────────────────
         print(section_header("Decals OBJ TRIS Block Deletions"))
         for rel_path in DecalTRISDeleter._TARGETS:
-            fp    = aircraft_dir / rel_path
+            fp = aircraft_dir / rel_path
             label = rel_path.split("/")[-1]
             if not fp.exists():
                 print(f"  {label}: Not found, skipping")
@@ -678,8 +679,12 @@ def main() -> None:
         print(" Done!")
         print("=" * SEPARATOR_WIDTH)
 
+    except FileNotFoundError as e:
+        print(f"\nERROR: {e}")
     except (ValueError, KeyError) as e:
         print(f"\nERROR: {e}")
+    except Exception as e:
+        print(f"\nUNEXPECTED ERROR: {e}")
 
     input("\nPress Enter to exit...")
 
