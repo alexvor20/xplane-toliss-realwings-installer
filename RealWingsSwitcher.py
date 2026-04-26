@@ -37,12 +37,11 @@ def main():
     print("  3 - NEO")
     print()
 
-    choice = input("Enter your choice (1/2/3): ").strip()
-
-    if choice not in VARIANTS:
-        print("Invalid choice. Please run the script again and enter 1, 2, or 3.")
-        input("Press enter to exit.")
-        return
+    while True:
+        choice = input("Enter your choice (1/2/3): ").strip()
+        if choice in ("1", "2", "3"):
+            break
+        print("Invalid choice. Please enter 1, 2, or 3.")
 
     variant_name, source_filename = VARIANTS[choice]
     source_file = os.path.join(acf_folder, source_filename)

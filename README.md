@@ -61,6 +61,6 @@ A32X Base Folder/
 
 This project is licensed under the GNU GPL v3.
 
-[iy4vet's](https://github.com/iy4vet) [Carda installer](https://github.com/iy4vet/xplane-toliss-carda-installer) was used as a base for this installer.
+[iy4vet](https://github.com/iy4vet)'s [Carda installer](https://github.com/iy4vet/xplane-toliss-carda-installer) was used as a base for this installer.
 
 [GeoBuilds](https://forums.x-plane.org/profile/962966-geobuilds/) and [Durantula2405](https://forums.x-plane.org/profile/843947-durantula2405/) - RealWings mod authors
